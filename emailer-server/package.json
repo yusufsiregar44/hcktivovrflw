@@ -1,0 +1,24 @@
+{
+  "name": "hcktivovrflw",
+  "version": "1.0.0",
+  "description": "A spin-off of the world famous Stack Overflow! Part of Hacktiv-8 phase-2 portofolio project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusufsiregar44/hcktivovrflw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yusufsiregar44/hcktivovrflw/issues"
+  },
+  "homepage": "https://github.com/yusufsiregar44/hcktivovrflw#readme",
+  "dependencies": {
+    "kue": "^0.11.6",
+    "node-cron": "^1.2.1"
+  }
+}
