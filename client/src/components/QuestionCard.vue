@@ -5,9 +5,9 @@
         <p class="subtitle is-6">asked by: {{ question.ownerName }}</p>
       </div>
       <a class="button" style="margin: 10px">
-      <!-- <router-link :to="`/question/${question._id}`"> -->
+      <router-link :to="`/question/${question.id}`">
           See full thread
-      <!-- </router-link> -->
+      </router-link>
     </a>
     </div>
 </template>

@@ -9,7 +9,7 @@
             <div class="content">
 
               <b-field label="Question">
-                <wysiwyg v-model="question" />
+                <wysiwyg v-model="question"/>
               </b-field>
 
               <a class="button is-success" @click="ask()">
@@ -64,13 +64,23 @@ export default {
             downvoters: [],
             ownerId: this.userInfo.uid,
             ownerName: this.userInfo.displayName,
-          });
-        this.$toast.open({
-          duration: 2500,
-          message: 'Successfully added question',
-          position: 'is-top',
-          type: 'is-success'
-        });
+          })
+          .then(() => {
+            this.$toast.open({
+              duration: 2500,
+              message: 'Successfully added question',
+              position: 'is-top',
+              type: 'is-success'
+            });
+          })
+          .catch(() => {
+            this.$toast.open({
+              duration: 2500,
+              message: 'Oops. something went wrong. Please try again',
+              position: 'is-top',
+              type: 'is-danger'
+            });
+          })
       }
     },
   },
