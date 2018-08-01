@@ -23,21 +23,20 @@
 </template>
 
 <script>
-// import { mapActions } from 'vuex';
-// import * as firebaseui from 'firebaseui'
+import { mapActions } from 'vuex';
 //
-// export default {
-//   created() {
+export default {
+  created() {
 //     this.firestoreRealTime();
-//     this.firebaseMonitorAuthState();
-//   },
-//   methods: {
-//     ...mapActions([
-//       'firestoreRealTime',
-//       'firebaseMonitorAuthState',
-//     ]),
-//   }
-// }
+    // this.firebaseMonitorAuthState();
+  },
+  methods: {
+    ...mapActions([
+      // 'firestoreRealTime',
+      // 'firebaseMonitorAuthState',
+    ]),
+  }
+}
 </script>
 
 <style lang="scss">
