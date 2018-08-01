@@ -18,18 +18,8 @@
         <div class="navbar-end">
 
           <a class="navbar-item" v-if="userInfo === null">
-            <a class="button is-inverted" @click="isEnterModalActive = true">
-              <span class="icon">
-                <i class="fas fa-sign-in-alt"></i>
-              </span>
-              <span>Enter</span>
-            </a>
+            <div id="firebaseui-auth-container" v-if="userInfo === null"></div>
           </a>
-
-
-            <b-modal :active.sync="isEnterModalActive" has-modal-card>
-              <EnterModal></EnterModal>
-            </b-modal>
 
           <a class="navbar-item" v-if="userInfo !== null">
              <a class="button is-inverted" @click="logout">
@@ -50,18 +40,29 @@
 import { mapState } from 'vuex';
 // import { mapActions } from 'vuex';
 import firebase from 'firebase';
-import EnterModal from '../components/EnterModal.vue';
+// import EnterModal from '../components/EnterModal.vue';
+import firebaseui from 'firebaseui'
+// eslint-disable-next-line
+import {config} from '../helpers/firebaseConfig';
 
 
 export default {
-
+  mounted() {
+     var uiConfig = {
+       signInSuccessUrl: '/',
+       signInOptions: [
+         firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+         firebase.auth.EmailAuthProvider.PROVIDER_ID
+         ]
+       };
+     var ui = new firebaseui.auth.AuthUI(firebase.auth());
+     ui.start('#firebaseui-auth-container', uiConfig);
+  },
   components: {
-    EnterModal,
     // LoginModal,
   },
   data() {
     return {
-      isEnterModalActive: false,
       // email: '',
       // password: '',
       // isLoginModalActive: false,
@@ -73,7 +74,7 @@ export default {
   methods: {
     // ...mapActions([ 'firebaseUiInit' ]),
     logout() {
-          firebase.auth().signOut();
+      firebase.auth().signOut();
     },
   },
 }
