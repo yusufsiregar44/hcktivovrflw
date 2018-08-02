@@ -21,6 +21,16 @@
             <div id="firebaseui-auth-container" v-if="userInfo === null"></div>
           </a>
 
+
+          <a class="navbar-item" v-if="userInfo !== null">
+             <a class="button is-inverted">
+               <span class="icon">
+                 <i class="fas fa-user"></i>
+               </span>
+               <span>{{ this.userInfo.displayName }}</span>
+             </a>
+          </a>
+
           <a class="navbar-item" v-if="userInfo !== null">
              <a class="button is-inverted" @click="logout">
                <span class="icon">
