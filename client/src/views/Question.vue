@@ -52,19 +52,10 @@
 
           <div v-if="answersData !== null">
             <article class="box" v-for="(answer, index) in answersData" v-bind:key="index">
-              <p class="title is-5" v-html="answer.content"></p>
-              <p class="subtitle is-6"> answered by: {{ answer.ownerName }}</p>
-              <div v-if="questionData !== null && userInfo !== null">
-               <a class="button is-success" style="margin-right: 5px; margin-top: 5px">
-                 <i class="fas fa-thumbs-up"></i>
-               </a>
-               <strong style="font-size: 30px;">0</strong>
-               <a class="button is-danger" style="margin-left: 5px; margin-top: 5px">
-                 <i class="fas fa-thumbs-down"></i>
-               </a>
-             </div>
+              <AnswerCard :answerDatum="answer" :questionData="questionData"></AnswerCard>
             </article>
           </div>
+
         </div>
       </div>
   </div>
@@ -72,6 +63,7 @@
 
 <script>
 import Navbar from '../components/Navbar.vue';
+import AnswerCard from '../components/AnswerCard.vue';
 import { mapState } from 'vuex';
 import firebase from 'firebase';
 import "vue-wysiwyg/dist/vueWysiwyg.css";
@@ -96,6 +88,7 @@ export default {
   },
   components: {
     Navbar,
+    AnswerCard,
   },
   methods: {
     downvote() {
@@ -197,6 +190,7 @@ export default {
             let downvoters = doc.data().downvoters;
             let ownerId = doc.data().ownerId;
             let ownerName = doc.data().ownerName;
+            let questionId = doc.data().questionId;
             let processedData = {
               id: id,
               content: content,
@@ -204,6 +198,7 @@ export default {
               downvoters: downvoters,
               ownerId: ownerId,
               ownerName: ownerName,
+              questionId: questionId,
             }
             answersArr.push(processedData);
           });
